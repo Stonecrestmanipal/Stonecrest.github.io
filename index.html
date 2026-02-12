@@ -1,8 +1,8 @@
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- TODO: Set the document title to the name of your application -->
     <title>KudluTheertha Trek | Stonecrest Manipal</title>
     <meta name="description" content="Join the exclusive KudluTheertha waterfall trek by Stonecrest Manipal. MAHE students only." />
     <meta name="author" content="Stonecrest Manipal" />
@@ -15,396 +15,870 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@Lovable" />
     <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Orbitron:wght@400;700;900&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+      :root {
+        --primary-green: #00ff88;
+        --dark-green: #0a1f14;
+        --gold: #ffd700;
+        --deep-black: #000000;
+        --off-white: #f5f5f5;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background: var(--deep-black);
+        color: var(--off-white);
+        overflow-x: hidden;
+        font-family: 'Outfit', sans-serif;
+        cursor: crosshair;
+      }
+
+      /* CUSTOM CURSOR TRAIL */
+      .cursor-trail {
+        position: fixed;
+        width: 6px;
+        height: 6px;
+        background: var(--primary-green);
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 9999;
+        opacity: 0;
+        animation: cursorFade 0.8s ease-out forwards;
+      }
+
+      @keyframes cursorFade {
+        0% { opacity: 1; transform: scale(1); }
+        100% { opacity: 0; transform: scale(0.3); }
+      }
+
+      /* GRAIN OVERLAY */
+      body::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: 
+          repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0, 255, 136, 0.03) 2px, rgba(0, 255, 136, 0.03) 4px);
+        pointer-events: none;
+        z-index: 1;
+        opacity: 0.4;
+        animation: grain 8s steps(10) infinite;
+      }
+
+      @keyframes grain {
+        0%, 100% { transform: translate(0, 0); }
+        10% { transform: translate(-5%, -10%); }
+        30% { transform: translate(3%, -15%); }
+        50% { transform: translate(12%, 9%); }
+        70% { transform: translate(9%, 4%); }
+        90% { transform: translate(-1%, 7%); }
+      }
+
+      /* NAVBAR */
+      nav {
+        position: fixed;
+        width: 100%;
+        padding: 30px 6%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        z-index: 1000;
+        background: linear-gradient(180deg, rgba(0,0,0,0.9) 0%, transparent 100%);
+        transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      nav.scrolled {
+        background: rgba(0, 0, 0, 0.95);
+        backdrop-filter: blur(20px) saturate(180%);
+        box-shadow: 0 10px 40px rgba(0, 255, 136, 0.1);
+        padding: 20px 6%;
+      }
+
+      .logo {
+        font-family: 'Orbitron', sans-serif;
+        font-weight: 900;
+        font-size: 1.5rem;
+        letter-spacing: 3px;
+        background: linear-gradient(135deg, var(--primary-green), var(--gold));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        filter: drop-shadow(0 0 20px rgba(0, 255, 136, 0.5));
+        animation: logoGlow 3s ease-in-out infinite;
+      }
+
+      @keyframes logoGlow {
+        0%, 100% { filter: drop-shadow(0 0 20px rgba(0, 255, 136, 0.5)); }
+        50% { filter: drop-shadow(0 0 35px rgba(0, 255, 136, 0.8)); }
+      }
+
+      nav ul {
+        display: flex;
+        list-style: none;
+        gap: 50px;
+      }
+
+      nav ul li a {
+        color: var(--off-white);
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 0.95rem;
+        letter-spacing: 1px;
+        position: relative;
+        transition: all 0.3s ease;
+        text-transform: uppercase;
+      }
+
+      nav ul li a::after {
+        content: '';
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: var(--primary-green);
+        transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 0 10px var(--primary-green);
+      }
+
+      nav ul li a:hover::after {
+        width: 100%;
+      }
+
+      nav ul li a:hover {
+        color: var(--primary-green);
+        text-shadow: 0 0 20px rgba(0, 255, 136, 0.6);
+      }
+
+      /* HERO */
+      .hero {
+        height: 100vh;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(circle at 30% 50%, rgba(0, 255, 136, 0.15), transparent 60%);
+        z-index: 2;
+        pointer-events: none;
+      }
+
+      .hero img {
+        width: 100%;
+        height: 100vh;
+        object-fit: cover;
+        filter: brightness(40%) contrast(120%) saturate(80%);
+        transform: scale(1.1);
+        animation: heroZoom 20s ease-in-out infinite alternate;
+      }
+
+      @keyframes heroZoom {
+        0% { transform: scale(1.1); }
+        100% { transform: scale(1.15); }
+      }
+
+      .hero-content {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        z-index: 10;
+        width: 90%;
+        max-width: 1200px;
+      }
+
+      .hero-content .tagline {
+        font-family: 'Orbitron', sans-serif;
+        font-size: 0.85rem;
+        letter-spacing: 6px;
+        font-weight: 400;
+        margin-bottom: 25px;
+        color: var(--gold);
+        text-transform: uppercase;
+        opacity: 0;
+        animation: fadeInUp 1.2s ease forwards 0.3s;
+        text-shadow: 0 0 30px rgba(255, 215, 0, 0.8);
+      }
+
+      .hero-content h1 {
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: 8rem;
+        letter-spacing: 8px;
+        font-weight: 400;
+        line-height: 0.95;
+        margin-bottom: 0;
+        opacity: 0;
+        animation: glitchTitle 0.8s ease forwards 0.6s;
+        text-transform: uppercase;
+        position: relative;
+        display: inline-block;
+      }
+
+      .hero-content h1::before {
+        content: 'KUDLUTHEERTHA';
+        position: absolute;
+        top: 0;
+        left: 2px;
+        color: rgba(0, 255, 136, 0.3);
+        z-index: -1;
+        animation: glitch1 2s infinite;
+      }
+
+      @keyframes glitch1 {
+        0%, 100% { transform: translate(0); }
+        20% { transform: translate(-2px, 2px); }
+        40% { transform: translate(-2px, -2px); }
+        60% { transform: translate(2px, 2px); }
+        80% { transform: translate(2px, -2px); }
+      }
+
+      .hero-content h1 .trek-text {
+        color: var(--primary-green);
+        display: block;
+        font-size: 9rem;
+        letter-spacing: 12px;
+        text-shadow: 
+          0 0 30px rgba(0, 255, 136, 0.8),
+          0 0 60px rgba(0, 255, 136, 0.5),
+          0 0 90px rgba(0, 255, 136, 0.3);
+        animation: neonPulse 2s ease-in-out infinite;
+      }
+
+      @keyframes neonPulse {
+        0%, 100% {
+          text-shadow: 
+            0 0 30px rgba(0, 255, 136, 0.8),
+            0 0 60px rgba(0, 255, 136, 0.5),
+            0 0 90px rgba(0, 255, 136, 0.3);
+        }
+        50% {
+          text-shadow: 
+            0 0 40px rgba(0, 255, 136, 1),
+            0 0 80px rgba(0, 255, 136, 0.7),
+            0 0 120px rgba(0, 255, 136, 0.5);
+        }
+      }
+
+      @keyframes glitchTitle {
+        0% {
+          opacity: 0;
+          transform: translateY(50px);
+        }
+        50% {
+          opacity: 1;
+          transform: translateY(-10px) skew(-2deg);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0) skew(0deg);
+        }
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .hero-content p {
+        margin-top: 35px;
+        font-weight: 300;
+        font-size: 1.15rem;
+        line-height: 1.8;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+        opacity: 0;
+        animation: fadeInUp 1.2s ease forwards 1s;
+        letter-spacing: 0.5px;
+      }
+
+      .btn {
+        margin-top: 45px;
+        display: inline-block;
+        padding: 18px 60px;
+        background: var(--primary-green);
+        color: var(--deep-black);
+        text-decoration: none;
+        border-radius: 0;
+        font-weight: 700;
+        font-size: 1.1rem;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        position: relative;
+        overflow: hidden;
+        opacity: 0;
+        animation: fadeInUp 1.2s ease forwards 1.3s;
+        transition: all 0.4s ease;
+        box-shadow: 
+          0 0 30px rgba(0, 255, 136, 0.4),
+          inset 0 0 0 var(--primary-green);
+      }
+
+      .btn::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+        transition: left 0.5s;
+      }
+
+      .btn:hover::before {
+        left: 100%;
+      }
+
+      .btn:hover {
+        transform: translateY(-5px);
+        box-shadow: 
+          0 0 50px rgba(0, 255, 136, 0.8),
+          0 10px 40px rgba(0, 255, 136, 0.3);
+        letter-spacing: 3px;
+      }
+
+      /* SCROLL INDICATOR */
+      .scroll-indicator {
+        position: absolute;
+        bottom: 40px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 10;
+        animation: bounce 2s infinite;
+      }
+
+      .scroll-indicator::before {
+        content: '';
+        display: block;
+        width: 2px;
+        height: 50px;
+        background: linear-gradient(to bottom, var(--primary-green), transparent);
+        margin: 0 auto 10px;
+      }
+
+      @keyframes bounce {
+        0%, 100% { transform: translateX(-50%) translateY(0); }
+        50% { transform: translateX(-50%) translateY(-15px); }
+      }
+
+      /* SECTION STYLE */
+      section {
+        padding: 150px 8%;
+        position: relative;
+        opacity: 0;
+        transform: translateY(80px);
+        transition: all 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      section.show {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* ABOUT */
+      .about {
+        background: linear-gradient(135deg, #0a1f14 0%, #000000 100%);
+        padding: 180px 8%;
+      }
+
+      .about-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 80px;
+        align-items: center;
+        max-width: 1400px;
+        margin: 0 auto;
+      }
+
+      .about-image {
+        position: relative;
+        overflow: hidden;
+        border-radius: 0;
+        transform: rotate(-2deg);
+        transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .about-image:hover {
+        transform: rotate(0deg) scale(1.02);
+      }
+
+      .about-image::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: linear-gradient(45deg, transparent, rgba(0, 255, 136, 0.1), transparent);
+        transform: rotate(45deg);
+        transition: all 0.6s;
+      }
+
+      .about-image:hover::before {
+        left: 100%;
+      }
+
+      .about-image img {
+        width: 100%;
+        height: 600px;
+        object-fit: cover;
+        display: block;
+        filter: grayscale(30%) contrast(110%);
+        transition: filter 0.6s;
+      }
+
+      .about-image:hover img {
+        filter: grayscale(0%) contrast(120%);
+      }
+
+      .about-text h2 {
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: 5rem;
+        margin-bottom: 30px;
+        letter-spacing: 4px;
+        background: linear-gradient(135deg, var(--off-white), var(--primary-green));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        line-height: 1;
+      }
+
+      .about-text p {
+        font-size: 1.2rem;
+        line-height: 2;
+        font-weight: 300;
+        color: rgba(245, 245, 245, 0.85);
+        letter-spacing: 0.5px;
+      }
+
+      /* GALLERY */
+      .gallery {
+        text-align: center;
+        background: var(--deep-black);
+        padding: 180px 8%;
+      }
+
+      .gallery h2 {
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: 5rem;
+        margin-bottom: 80px;
+        letter-spacing: 6px;
+        color: var(--off-white);
+      }
+
+      .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 25px;
+        max-width: 1600px;
+        margin: 0 auto;
+      }
+
+      .gallery-item {
+        position: relative;
+        overflow: hidden;
+        aspect-ratio: 1;
+        cursor: pointer;
+        border: 2px solid transparent;
+        transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .gallery-item::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, rgba(0, 255, 136, 0.8), rgba(255, 215, 0, 0.6));
+        opacity: 0;
+        transition: opacity 0.5s;
+        z-index: 1;
+        mix-blend-mode: multiply;
+      }
+
+      .gallery-item:hover::before {
+        opacity: 1;
+      }
+
+      .gallery-item:hover {
+        border-color: var(--primary-green);
+        transform: scale(1.05) rotate(2deg);
+        box-shadow: 0 20px 60px rgba(0, 255, 136, 0.4);
+        z-index: 10;
+      }
+
+      .gallery-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        filter: grayscale(40%);
+      }
+
+      .gallery-item:hover img {
+        transform: scale(1.15);
+        filter: grayscale(0%);
+      }
+
+      /* WHAT TO EXPECT SECTION */
+      .details {
+        padding: 180px 8%;
+        text-align: center;
+        background: linear-gradient(180deg, #000000 0%, #0a1f14 50%, #000000 100%);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .details::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 1px;
+        height: 100%;
+        background: linear-gradient(to bottom, transparent, var(--primary-green), transparent);
+        opacity: 0.3;
+      }
+
+      .section-title {
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: 5.5rem;
+        margin-bottom: 100px;
+        letter-spacing: 8px;
+        color: var(--off-white);
+      }
+
+      .details-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 40px;
+        max-width: 1400px;
+        margin: 0 auto;
+      }
+
+      .detail-card {
+        background: rgba(15, 15, 15, 0.6);
+        backdrop-filter: blur(10px);
+        padding: 60px 40px;
+        border: 1px solid rgba(0, 255, 136, 0.15);
+        border-radius: 12px;
+        position: relative;
+        transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        opacity: 0;
+        transform: translateY(80px) scale(0.9);
+        animation: cardReveal 1s ease forwards;
+        overflow: hidden;
+      }
+
+      .detail-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, transparent, rgba(0, 255, 136, 0.05));
+        opacity: 0;
+        transition: opacity 0.5s;
+      }
+
+      .detail-card:hover::before {
+        opacity: 1;
+      }
+
+      .detail-card:nth-child(1) { animation-delay: 0.1s; }
+      .detail-card:nth-child(2) { animation-delay: 0.2s; }
+      .detail-card:nth-child(3) { animation-delay: 0.3s; }
+      .detail-card:nth-child(4) { animation-delay: 0.4s; }
+      .detail-card:nth-child(5) { animation-delay: 0.5s; }
+      .detail-card:nth-child(6) { animation-delay: 0.6s; }
+
+      @keyframes cardReveal {
+        to {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
+      }
+
+      .card-icon {
+        margin: 0 auto 25px;
+        color: var(--primary-green);
+        filter: drop-shadow(0 0 10px rgba(0, 255, 136, 0.5));
+      }
+
+      .detail-card h3 {
+        font-family: 'Outfit', sans-serif;
+        font-size: 1.3rem;
+        margin-top: 20px;
+        font-weight: 400;
+        letter-spacing: 0.5px;
+        color: var(--off-white);
+        line-height: 1.4;
+      }
+
+      .detail-card:hover {
+        transform: translateY(-10px) scale(1.02);
+        border-color: var(--primary-green);
+        box-shadow: 
+          0 20px 60px rgba(0, 255, 136, 0.2),
+          inset 0 0 30px rgba(0, 255, 136, 0.05);
+      }
+
+      .detail-card:hover .card-icon {
+        transform: scale(1.1);
+        filter: drop-shadow(0 0 20px rgba(0, 255, 136, 0.8));
+      }
+
+      /* FOOTER */
+      footer {
+        text-align: center;
+        padding: 60px 40px;
+        background: var(--deep-black);
+        border-top: 1px solid rgba(0, 255, 136, 0.2);
+        font-size: 0.95rem;
+        letter-spacing: 1px;
+        color: rgba(245, 245, 245, 0.6);
+      }
+
+      /* MOBILE */
+      @media (max-width: 1200px) {
+        .hero-content h1 { font-size: 6rem; }
+        .hero-content h1 .trek-text { font-size: 7rem; }
+        .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+        .details-grid { grid-template-columns: repeat(2, 1fr); }
+      }
+
+      @media (max-width: 900px) {
+        .about-container { 
+          grid-template-columns: 1fr;
+          gap: 50px;
+        }
+        .about-image { transform: rotate(0); }
+        .hero-content h1 { font-size: 4rem; }
+        .hero-content h1 .trek-text { font-size: 5rem; }
+        .hero-content .tagline { font-size: 0.7rem; }
+        nav ul { gap: 25px; }
+        .section-title { font-size: 3.5rem; }
+        .details-grid { grid-template-columns: 1fr; }
+      }
+
+      @media (max-width: 600px) {
+        .hero-content h1 { font-size: 3rem; letter-spacing: 4px; }
+        .hero-content h1 .trek-text { font-size: 3.5rem; letter-spacing: 6px; }
+        .gallery-grid { grid-template-columns: 1fr; }
+      }
+    </style>
   </head>
 
   <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
+    <nav id="navbar">
+      <div class="logo">KUDLUTHEERTHA</div>
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#details">Details</a></li>
+      </ul>
+    </nav>
+
+    <section class="hero">
+      <img src="image1.png" alt="Kudlutheertha Waterfall" />
+      <div class="hero-content">
+        <p class="tagline">STONECREST MANIPAL PRESENTS</p>
+        <h1>
+          KUDLUTHEERTHA<br />
+          <span class="trek-text">WATERFALL TREK</span>
+        </h1>
+        <p>
+          Exclusive for MAHE students only.<br />
+          Limited seats. Memories guaranteed.
+        </p>
+        <a href="#details" class="btn">Register Now</a>
+      </div>
+      <div class="scroll-indicator"></div>
+    </section>
+
+    <section id="about" class="about">
+      <div class="about-container">
+        <div class="about-image">
+          <img src="image2.png" alt="Trek trail" />
+        </div>
+        <div class="about-text">
+          <h2>Into The Wild</h2>
+          <p>
+            A breathtaking forest trail leading to one of Karnataka's most
+            beautiful hidden waterfalls. Bond, explore, and create unforgettable
+            memories with fellow adventurers on this exclusive journey through nature's masterpiece.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="gallery" class="gallery">
+      <h2>Moments From The Trail</h2>
+      <div class="gallery-grid">
+        <div class="gallery-item">
+          <img src="image3.png" alt="Gallery image 1" />
+        </div>
+        <div class="gallery-item">
+          <img src="image4.png" alt="Gallery image 2" />
+        </div>
+        <div class="gallery-item">
+          <img src="image2.png" alt="Gallery image 3" />
+        </div>
+        <div class="gallery-item">
+          <img src="image3.png" alt="Gallery image 4" />
+        </div>
+      </div>
+    </section>
+
+    <section id="details" class="details">
+      <h2 class="section-title">What To Expect</h2>
+      <div class="details-grid">
+        <div class="detail-card">
+          <div class="card-icon">
+            <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M3 20l6-6 4 4 8-8"/>
+            </svg>
+          </div>
+          <h3>30 Min Scenic Uphill Trek</h3>
+        </div>
+
+        <div class="detail-card">
+          <div class="card-icon">
+            <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M17 8h1a4 4 0 1 1 0 8h-1"/>
+              <path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"/>
+              <line x1="6" y1="2" x2="6" y2="4"/>
+              <line x1="10" y1="2" x2="10" y2="4"/>
+              <line x1="14" y1="2" x2="14" y2="4"/>
+            </svg>
+          </div>
+          <h3>Breakfast On Us</h3>
+        </div>
+
+        <div class="detail-card">
+          <div class="card-icon">
+            <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="m7 21-4.3-4.3c-1-1-1-2.5 0-3.4l9.6-9.6c1-1 2.5-1 3.4 0l5.6 5.6c1 1 1 2.5 0 3.4L13 21"/>
+              <path d="M22 11 2 11"/>
+            </svg>
+          </div>
+          <h3>Refreshments Included</h3>
+        </div>
+
+        <div class="detail-card">
+          <div class="card-icon">
+            <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M3 12h3m3 0h3m3 0h3m3 0h3"/>
+              <path d="M3 6h18"/>
+              <path d="M3 18h18"/>
+            </svg>
+          </div>
+          <h3>Halt For Lunch</h3>
+        </div>
+
+        <div class="detail-card">
+          <div class="card-icon">
+            <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M9 18V5l12-2v13"/>
+              <circle cx="6" cy="18" r="3"/>
+              <circle cx="18" cy="16" r="3"/>
+            </svg>
+          </div>
+          <h3>Vibes & Music On Speaker</h3>
+        </div>
+
+        <div class="detail-card">
+          <div class="card-icon">
+            <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364-.707-.707M6.343 6.343l-.707-.707m12.728 0-.707.707M6.343 17.657l-.707.707"/>
+              <circle cx="12" cy="12" r="3"/>
+            </svg>
+          </div>
+          <h3>Waterfall Dip & Chill</h3>
+        </div>
+      </div>
+    </section>
+
+    <footer>© 2026 Kudlutheertha Trek @Stonecrest Manipal</footer>
+
+    <script>
+      // Navbar scroll effect
+      window.addEventListener('scroll', function () {
+        const nav = document.getElementById('navbar');
+        nav.classList.toggle('scrolled', window.scrollY > 50);
+      });
+
+      // Scroll reveal animation
+      const sections = document.querySelectorAll('section');
+      const observerOptions = {
+        threshold: 0.15,
+        rootMargin: '0px 0px -100px 0px'
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('show');
+          }
+        });
+      }, observerOptions);
+
+      sections.forEach((sec) => observer.observe(sec));
+
+      // Cursor trail effect
+      let lastTime = 0;
+      const throttleDelay = 50;
+
+      document.addEventListener('mousemove', (e) => {
+        const currentTime = Date.now();
+        if (currentTime - lastTime < throttleDelay) return;
+        lastTime = currentTime;
+
+        const trail = document.createElement('div');
+        trail.className = 'cursor-trail';
+        trail.style.left = e.pageX + 'px';
+        trail.style.top = e.pageY + 'px';
+        document.body.appendChild(trail);
+
+        setTimeout(() => trail.remove(), 800);
+      });
+
+      // Hide scroll indicator on scroll
+      window.addEventListener('scroll', () => {
+        const indicator = document.querySelector('.scroll-indicator');
+        if (window.scrollY > 100 && indicator) {
+          indicator.style.opacity = '0';
+        }
+      });
+    </script>
   </body>
 </html>
-
-<style>
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family:'Montserrat', sans-serif;
-}
-
-body{
-  background:#0b0f0c;
-  color:white;
-  overflow-x:hidden;
-}
-
-/* NAVBAR */
-nav{
-  position:fixed;
-  width:100%;
-  padding:25px 8%;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  z-index:1000;
-  transition:0.4s;
-}
-
-nav.scrolled{
-  background:rgba(0,0,0,0.7);
-  backdrop-filter:blur(10px);
-}
-
-.logo{
-  font-weight:700;
-  letter-spacing:2px;
-}
-
-nav ul{
-  display:flex;
-  list-style:none;
-}
-
-nav ul li{
-  margin-left:40px;
-}
-
-nav ul li a{
-  color:white;
-  text-decoration:none;
-  font-weight:400;
-  transition:0.3s;
-}
-
-nav ul li a:hover{
-  color:#2ecc71;
-}
-
-/* HERO */
-.hero{
-  height:100vh;
-  position:relative;
-}
-
-.hero img{
-  width:100%;
-  height:100vh;
-  object-fit:cover;
-  filter:brightness(55%);
-}
-
-.hero-content{
-  position:absolute;
-  top:50%;
-  left:50%;
-  transform:translate(-50%,-50%);
-  text-align:center;
-  animation:fadeUp 1.5s ease forwards;
-}
-
-.hero-content h1{
-  font-size:4rem;
-  letter-spacing:3px;
-}
-
-.hero-content p{
-  margin-top:20px;
-  font-weight:300;
-  font-size:1.2rem;
-}
-
-.btn{
-  margin-top:30px;
-  display:inline-block;
-  padding:14px 40px;
-  background:#2ecc71;
-  color:white;
-  text-decoration:none;
-  border-radius:50px;
-  transition:0.3s;
-}
-
-.btn:hover{
-  background:#27ae60;
-}
-
-/* SECTION STYLE */
-section{
-  padding:120px 10%;
-  opacity:0;
-  transform:translateY(60px);
-  transition:1s;
-}
-
-section.show{
-  opacity:1;
-  transform:translateY(0);
-}
-
-/* ABOUT */
-.about{
-  display:flex;
-  align-items:center;
-  gap:60px;
-}
-
-.about img{
-  width:50%;
-  border-radius:15px;
-}
-
-.about-text{
-  width:50%;
-}
-
-.about-text h2{
-  font-size:2.5rem;
-  margin-bottom:20px;
-}
-
-/* GALLERY */
-.gallery{
-  text-align:center;
-}
-
-.gallery-grid{
-  margin-top:50px;
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-  gap:25px;
-}
-
-.gallery-grid img{
-  width:100%;
-  border-radius:15px;
-  transition:0.4s;
-}
-
-.gallery-grid img:hover{
-  transform:scale(1.05);
-}
-
-/* DETAILS SECTION */
-<section id="details" class="details">
-  <h2 class="section-title">Trek Details</h2>
-
-  <div class="details-grid">
-    <div class="detail-card">
-      <h3>Location</h3>
-      <p>Kudlutheertha Falls</p>
-    </div>
-
-    <div class="detail-card">
-      <h3>Duration</h3>
-      <p>4 hrs</p>
-    </div>
-
-    <div class="detail-card">
-      <h3>Difficulty</h3>
-      <p>Moderate</p>
-    </div>
-  </div>
-</section>
-/* DETAILS SECTION */
-.details {
-  padding: 150px 10%;
-  text-align: center;
-  background: radial-gradient(circle at top, #0f1f17, #060b08);
-}
-
-.section-title {
-  font-size: 3rem;
-  margin-bottom: 80px;
-  font-weight: 600;
-  opacity: 0;
-  transform: translateY(40px);
-  animation: fadeUp 1s ease forwards;
-}
-
-/* GRID */
-.details-grid {
-  display: flex;
-  justify-content: center;
-  gap: 60px;
-  flex-wrap: wrap;
-}
-
-/* CARDS */
-.detail-card {
-  background: rgba(20, 35, 28, 0.6);
-  backdrop-filter: blur(12px);
-  padding: 50px 70px;
-  border-radius: 20px;
-  width: 300px;
-  transition: all 0.4s ease;
-  opacity: 0;
-  transform: translateY(60px) scale(0.95);
-  animation: popUp 0.8s ease forwards;
-}
-
-/* stagger effect */
-.detail-card:nth-child(1) { animation-delay: 0.2s; }
-.detail-card:nth-child(2) { animation-delay: 0.4s; }
-.detail-card:nth-child(3) { animation-delay: 0.6s; }
-
-.detail-card h3 {
-  font-size: 1.5rem;
-  margin-bottom: 15px;
-  font-weight: 600;
-}
-
-.detail-card p {
-  font-size: 1.2rem;
-  color: #d0d0d0;
-}
-
-/* hover lift */
-.detail-card:hover {
-  transform: translateY(-12px) scale(1.03);
-  background: rgba(25, 50, 38, 0.8);
-  box-shadow: 0 15px 40px rgba(0,0,0,0.6);
-}
-
-/* animations */
-@keyframes popUp {
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-
-@keyframes fadeUp {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-
-/* FOOTER */
-footer{
-  text-align:center;
-  padding:40px;
-  background:black;
-}
-
-/* ANIMATION */
-@keyframes fadeUp{
-  from{
-    opacity:0;
-    transform:translate(-50%,-40%);
-  }
-  to{
-    opacity:1;
-    transform:translate(-50%,-50%);
-  }
-}
-
-/* MOBILE */
-@media(max-width:900px){
-  .about{
-    flex-direction:column;
-  }
-  .about img,
-  .about-text{
-    width:100%;
-  }
-  .hero-content h1{
-    font-size:2.5rem;
-  }
-}
-</style>
-</head>
-
-<body>
-
-<nav id="navbar">
-  <div class="logo">KUDLUTHEERTHA</div>
-  <ul>
-    <li><a href="#about">About</a></li>
-    <li><a href="#gallery">Gallery</a></li>
-    <li><a href="#details">Details</a></li>
-  </ul>
-</nav>
-
-<section class="hero">
-  <img src="image1.png">
-  <div class="hero-content">
-    <h1>KUDLUTHEERTHA
-    Trek</h1>
-    <p>21st February, Saturday
-    Exclusive for MAHE students only.
-Limited seats. Memories guaranteed.</p>
-    <a href="#details" class="btn">Explore Trek</a>
-  </div>
-</section>
-
-<section id="about">
-  <div class="about">
-    <img src="image2.png">
-    <div class="about-text">
-      <h2>Into The Wild</h2>
-      <p>
-        A breathtaking forest trail leading to one of Karnataka’s
-        most beautiful hidden waterfalls. Bond, explore, and create
-        unforgettable memories.
-      </p>
-    </div>
-  </div>
-</section>
-
-<section id="gallery" class="gallery">
-  <h2>Moments From The Trail</h2>
-  <div class="gallery-grid">
-    <img src="image3.png">
-    <img src="image4.png">
-    <img src="image2.png">
-    <img src="image3.png">
-  </div>
-</section>
-
-<section id="details" class="details">
-  <h2>Trek Details</h2>
-  <div class="details-box">
-    <div class="detail">
-      <h3>Location</h3>
-      <p>Kudlutheertha Falls</p>
-    </div>
-    <div class="detail">
-      <h3>Duration</h3>
-      <p> 4 hrs </p>
-    </div>
-    <div class="detail">
-      <h3>Difficulty</h3>
-      <p>Moderate</p>
-    </div>
-  </div>
-</section>
-
-<footer>
-  © 2026 Kudlutheertha Trek @Stonecrest Manipal
-
-</footer>
- 
-
-<script>
-/* Navbar background on scroll */
-window.addEventListener("scroll", function(){
-  const nav = document.getElementById("navbar");
-  nav.classList.toggle("scrolled", window.scrollY > 50);
-});
-
-/* Scroll reveal animation */
-const sections = document.querySelectorAll("section");
-window.addEventListener("scroll", () => {
-  sections.forEach(sec => {
-    const top = sec.getBoundingClientRect().top;
-    if(top < window.innerHeight - 100){
-      sec.classList.add("show");
-    }
-  });
-});
-</script>
-
-</body>
-</html>
-
