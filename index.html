@@ -115,8 +115,15 @@
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
+        filter: drop-shadow(0 0 20px rgba(0, 255, 136, 0.5));
+        animation: logoGlow 3s ease-in-out infinite;
       }
-      
+
+      @keyframes logoGlow {
+        0%, 100% { filter: drop-shadow(0 0 20px rgba(0, 255, 136, 0.5)); }
+        50% { filter: drop-shadow(0 0 35px rgba(0, 255, 136, 0.8)); }
+      }
+
       nav ul {
         display: flex;
         list-style: none;
@@ -152,6 +159,7 @@
 
       nav ul li a:hover {
         color: var(--primary-green);
+        text-shadow: 0 0 20px rgba(0, 255, 136, 0.6);
       }
 
       /* HERO */
@@ -225,12 +233,49 @@
         display: inline-block;
       }
 
+      .hero-content h1::before {
+        content: 'KUDLUTHEERTHA';
+        position: absolute;
+        top: 0;
+        left: 2px;
+        color: rgba(0, 255, 136, 0.3);
+        z-index: -1;
+        animation: glitch1 2s infinite;
+      }
+
+      @keyframes glitch1 {
+        0%, 100% { transform: translate(0); }
+        20% { transform: translate(-2px, 2px); }
+        40% { transform: translate(-2px, -2px); }
+        60% { transform: translate(2px, 2px); }
+        80% { transform: translate(2px, -2px); }
+      }
+
       .hero-content h1 .trek-text {
         color: var(--primary-green);
         display: block;
         font-size: 9rem;
         letter-spacing: 12px;
         text-shadow: 
+          0 0 30px rgba(0, 255, 136, 0.8),
+          0 0 60px rgba(0, 255, 136, 0.5),
+          0 0 90px rgba(0, 255, 136, 0.3);
+        animation: neonPulse 2s ease-in-out infinite;
+      }
+
+      @keyframes neonPulse {
+        0%, 100% {
+          text-shadow: 
+            0 0 30px rgba(0, 255, 136, 0.8),
+            0 0 60px rgba(0, 255, 136, 0.5),
+            0 0 90px rgba(0, 255, 136, 0.3);
+        }
+        50% {
+          text-shadow: 
+            0 0 40px rgba(0, 255, 136, 1),
+            0 0 80px rgba(0, 255, 136, 0.7),
+            0 0 120px rgba(0, 255, 136, 0.5);
+        }
       }
 
       @keyframes glitchTitle {
@@ -289,6 +334,9 @@
         opacity: 0;
         animation: fadeInUp 1.2s ease forwards 1.3s;
         transition: all 0.4s ease;
+        box-shadow: 
+          0 0 30px rgba(0, 255, 136, 0.4),
+          inset 0 0 0 var(--primary-green);
       }
 
       .btn::before {
@@ -308,6 +356,9 @@
 
       .btn:hover {
         transform: translateY(-5px);
+        box-shadow: 
+          0 0 50px rgba(0, 255, 136, 0.8),
+          0 10px 40px rgba(0, 255, 136, 0.3);
         letter-spacing: 3px;
       }
 
@@ -478,6 +529,7 @@
       .gallery-item:hover {
         border-color: var(--primary-green);
         transform: scale(1.05) rotate(2deg);
+        box-shadow: 0 20px 60px rgba(0, 255, 136, 0.4);
         z-index: 10;
       }
 
@@ -596,6 +648,8 @@
         transform: translateY(-10px) scale(1.02);
         border-color: var(--primary-green);
         box-shadow: 
+          0 20px 60px rgba(0, 255, 136, 0.2),
+          inset 0 0 30px rgba(0, 255, 136, 0.05);
       }
 
       .detail-card:hover .card-icon {
@@ -646,7 +700,7 @@
 
   <body>
     <nav id="navbar">
-      <div class="logo">KudluTheertha</div>
+      <div class="logo">KUDLUTHEERTHA</div>
       <ul>
         <li><a href="#about">About</a></li>
         <li><a href="#gallery">Gallery</a></li>
@@ -657,17 +711,16 @@
     <section class="hero">
       <img src="image1.png" alt="Kudlutheertha Waterfall" />
       <div class="hero-content">
-        <p class="tagline">𝗦𝗧𝗢𝗡𝗘𝗖𝗥𝗘𝗦𝗧 𝗠𝗔𝗡𝗜𝗣𝗔𝗟 𝗣𝗥𝗘𝗦𝗘𝗡𝗧𝗦</p>
+        <p class="tagline">STONECREST MANIPAL PRESENTS</p>
         <h1>
-          𝐊𝐮𝐝𝐥𝐮𝐓𝐡𝐞𝐞𝐫𝐭𝐡𝐚<br />
-          <span class="trek-text">𝐓𝐫𝐞𝐤</span>
+          KUDLUTHEERTHA<br />
+          <span class="trek-text">WATERFALL TREK</span>
         </h1>
         <p>
-          21st February, Saturday.<br />
           Exclusive for MAHE students only.<br />
           Limited seats. Memories guaranteed.
         </p>
-        <a href="#details" class="btn">Register Now</a>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSfkF0SAszBsA6zhpOj9DYv24PqOkfob1LG1wNPolTYWpSHWlg/viewform?usp=header" target="_blank" class="btn">Register Now</a>
       </div>
       <div class="scroll-indicator"></div>
     </section>
@@ -675,7 +728,7 @@
     <section id="about" class="about">
       <div class="about-container">
         <div class="about-image">
-          <img src="image5.png" alt="Trek trail" />
+          <img src="image2.png" alt="Trek trail" />
         </div>
         <div class="about-text">
           <h2>Into The Wild</h2>
@@ -718,7 +771,19 @@
           <h3>30 Min Scenic Uphill Trek</h3>
         </div>
 
-      
+        <div class="detail-card">
+          <div class="card-icon">
+            <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M17 8h1a4 4 0 1 1 0 8h-1"/>
+              <path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"/>
+              <line x1="6" y1="2" x2="6" y2="4"/>
+              <line x1="10" y1="2" x2="10" y2="4"/>
+              <line x1="14" y1="2" x2="14" y2="4"/>
+            </svg>
+          </div>
+          <h3>Breakfast On Us</h3>
+        </div>
+
         <div class="detail-card">
           <div class="card-icon">
             <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -726,7 +791,18 @@
               <path d="M22 11 2 11"/>
             </svg>
           </div>
-          <h3>breakfast & Refreshments Included</h3>
+          <h3>Refreshments Included</h3>
+        </div>
+
+        <div class="detail-card">
+          <div class="card-icon">
+            <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M3 12h3m3 0h3m3 0h3m3 0h3"/>
+              <path d="M3 6h18"/>
+              <path d="M3 18h18"/>
+            </svg>
+          </div>
+          <h3>Halt For Lunch</h3>
         </div>
 
         <div class="detail-card">
@@ -737,7 +813,7 @@
               <circle cx="18" cy="16" r="3"/>
             </svg>
           </div>
-          <h3>Vibes & Music</h3>
+          <h3>Vibes & Music On Speaker</h3>
         </div>
 
         <div class="detail-card">
